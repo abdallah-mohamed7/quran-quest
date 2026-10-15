@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-arabic: "Cairo", system-ui, sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-bob: bob 2.4s ease-in-out infinite;
+  --animate-twinkle: twinkle 2.5s ease-in-out infinite;
+  --animate-pop: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-8px) rotate(3deg); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+@keyframes pop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-display);
+  background: #a8d8ff;
+  color: #1a2a4a;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; }
+
+canvas {
+  display: block;
+  outline: none;
+  touch-action: none;
+}

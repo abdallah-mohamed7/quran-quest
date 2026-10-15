@@ -1,0 +1,41 @@
+﻿# ── Node ─────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Vite / build output ──────────────
+dist/
+dist-ssr/
+.vite/
+*.local
+
+# ── Capacitor / Android ──────────────
+android/
+ios/
+.capacitor/
+
+# ── Quran audio (too big for GitHub) ─
+public/quran/audio/pages/*.mp3
+
+# ── Backups & logs ───────────────────
+_backups/
+*.bak
+*.bak2
+*.bak3
+*.bak4
+*.bak5
+*.bak_*
+
+# ── Editor / OS ──────────────────────
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ── Env ──────────────────────────────
+.env
+.env.local
+.env.*.local

@@ -19,7 +19,7 @@ export class LevelScene extends Phaser.Scene {
   private player!: Phaser.Physics.Arcade.Sprite;
   private solids!: Phaser.Physics.Arcade.StaticGroup;
   private coins!: Phaser.Physics.Arcade.StaticGroup;
-  private keys!: Record<'left'|'right'|'jump'|'restart', Phaser.Input.Keyboard.Key>;
+  private keys!: Record<'left' | 'right' | 'jump' | 'restart', Phaser.Input.Keyboard.Key>;
 
   private lastGroundedAt = 0;
   private jumpQueuedAt = 0;
@@ -52,9 +52,7 @@ export class LevelScene extends Phaser.Scene {
     bus.on('input:left:up',    () => { this.virtualLeft  = false; });
     bus.on('input:right:down', () => { this.virtualRight = true;  });
     bus.on('input:right:up',   () => { this.virtualRight = false; });
-    bus.on('input:jump:down',  () => {
-      this.jumpQueuedAt = this.time.now;
-    });
+    bus.on('input:jump:down',  () => { this.jumpQueuedAt = this.time.now; });
   }
 
   private loadLevel(level: LevelDef): void {
@@ -80,14 +78,13 @@ export class LevelScene extends Phaser.Scene {
 
     const theme = THEMES[level.theme];
 
-    // Sky gradient
     const cam = this.cameras.main;
     cam.setBackgroundColor(theme.skyBottom);
     const bg = this.add.graphics().setScrollFactor(0).setDepth(-100);
     bg.fillGradientStyle(theme.skyTop, theme.skyTop, theme.skyBottom, theme.skyBottom, 1);
     bg.fillRect(0, 0, 1280, WORLD_H);
 
-    // Far hills (parallax 0.15)
+    // Parallax hills
     const hillLayer = (count: number, yOff: number, w: number, h: number, color: number, alpha: number, px: number) => {
       for (let i = 0; i < count; i++) {
         const hx = i * (worldW / count) + Phaser.Math.Between(-150, 150);
@@ -112,7 +109,7 @@ export class LevelScene extends Phaser.Scene {
         .setScrollFactor(0.35).setDepth(-88);
     }
 
-    // Decorations (trees, bushes) — behind platforms
+    // Decorations
     for (const d of level.decorations) {
       const key = d.kind === 'tree' ? 'tree' : 'bush';
       this.add.image(d.x, d.y + 30, key)
@@ -158,13 +155,13 @@ export class LevelScene extends Phaser.Scene {
 
     // Player
     this.player = this.physics.add.sprite(level.spawn.x, level.spawn.y, 'ball');
-    this.player.setCircle(40, 8, 8);   // 96px texture, radius 40, offset 8 to centre
+    this.player.setCircle(40, 8, 8);
     this.player.setBounce(0);
     this.player.setCollideWorldBounds(true);
     this.player.setDragX(1800);
     this.player.setMaxVelocity(420, 1000);
     this.player.setDepth(10);
-    this.player.setScale(0.62);        // visually ~60px ball
+    this.player.setScale(0.62);
 
     // Collisions
     this.physics.add.collider(this.player, this.solids, (_p, obj) => {

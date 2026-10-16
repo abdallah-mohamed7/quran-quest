@@ -3,10 +3,9 @@ import type { CSSProperties } from 'react';
 import PhaserGame from '../game/PhaserGame';
 import { bus } from '../game/bus';
 import { quranAudio } from '../game/systems/QuranAudio';
-import type { Ayah } from '../game/types';
+import type { Ayah, LevelDef, LevelResult, Theme } from '../game/types';
 import { TouchControls } from './TouchControls';
 import { progress, computeStars } from '../game/progress';
-import type { LevelDef, LevelResult, Theme } from '../game/types';
 
 type CoinPayload = { got: number; total: number };
 

@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useState } from 'react';
 import Menu from './platform/Menu';
 import LevelSelect from './platform/LevelSelect';
@@ -17,9 +16,7 @@ export default function App() {
 
   return (
     <div style={{ width: '100%', height: '100vh', overflow: 'hidden' }}>
-      {screen === 'menu' && (
-        <Menu onStart={() => setScreen('select')} />
-      )}
+      {screen === 'menu' && <Menu onStart={() => setScreen('select')} />}
       {screen === 'select' && (
         <LevelSelect
           onPick={(id) => {

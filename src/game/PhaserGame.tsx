@@ -1,4 +1,3 @@
-// src/game/PhaserGame.tsx
 import { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
 import { BootScene } from './scenes/BootScene';
@@ -12,26 +11,20 @@ export default function PhaserGame({ level }: { level: LevelDef }) {
 
   useEffect(() => {
     if (!hostRef.current || gameRef.current) return;
-
     const parent = hostRef.current;
-    const w = parent.clientWidth  || window.innerWidth;
-    const h = parent.clientHeight || window.innerHeight;
 
     gameRef.current = new Phaser.Game({
       type: Phaser.AUTO,
       parent,
-      width: w,
-      height: h,
+      width: parent.clientWidth || window.innerWidth,
+      height: parent.clientHeight || window.innerHeight,
       backgroundColor: '#c8e8ff',
       antialias: true,
       pixelArt: false,
       roundPixels: false,
-      physics: {
-        default: 'arcade',
-        arcade: { gravity: { x: 0, y: 1000 }, debug: false },
-      },
+      physics: { default: 'arcade', arcade: { gravity: { x: 0, y: 1100 }, debug: false } },
       scale: {
-        mode: Phaser.Scale.RESIZE,     // ← canvas matches parent exactly
+        mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: '100%',
         height: '100%',
@@ -39,7 +32,6 @@ export default function PhaserGame({ level }: { level: LevelDef }) {
       scene: [BootScene, LevelScene],
     });
 
-    // Keep canvas matched on resize / rotation
     const onResize = () => {
       gameRef.current?.scale.resize(parent.clientWidth, parent.clientHeight);
     };
@@ -60,14 +52,5 @@ export default function PhaserGame({ level }: { level: LevelDef }) {
     return () => window.clearTimeout(t);
   }, [level]);
 
-  return (
-    <div
-      ref={hostRef}
-      style={{
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-      }}
-    />
-  );
+  return <div ref={hostRef} style={{ width: '100%', height: '100%', overflow: 'hidden' }} />;
 }

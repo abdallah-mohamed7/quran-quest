@@ -1,50 +1,57 @@
-@import "tailwindcss";
+﻿@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Cairo:wght@500;700;900&display=swap');
 
-@theme {
-  --font-display: "Baloo 2", system-ui, sans-serif;
-  --font-arabic: "Cairo", system-ui, sans-serif;
-
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-bob: bob 2.4s ease-in-out infinite;
-  --animate-twinkle: twinkle 2.5s ease-in-out infinite;
-  --animate-pop: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-14px); }
-}
-@keyframes bob {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50%      { transform: translateY(-8px) rotate(3deg); }
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 0.4; transform: scale(0.9); }
-  50%      { opacity: 1; transform: scale(1.15); }
-}
-@keyframes pop {
-  0%   { transform: scale(0.7); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body, #root {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: var(--font-display);
+  font-family: 'Baloo 2', system-ui, sans-serif;
   background: #a8d8ff;
   color: #1a2a4a;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  position: fixed;
+  inset: 0;
 }
 
-button { font-family: inherit; }
+.ar { font-family: 'Cairo', system-ui, sans-serif; }
+
+#root {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+button:active { transform: translateY(1px); }
 
 canvas {
   display: block;
   outline: none;
+  user-select: none;
+  -webkit-user-select: none;
   touch-action: none;
 }
+
+@keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes bob { 0%,100%{transform:rotate(-3deg) translateY(0)} 50%{transform:rotate(3deg) translateY(-8px)} }
+@keyframes twinkle { 0%,100%{opacity:0.35; transform:scale(0.9)} 50%{opacity:1; transform:scale(1.15)} }
+@keyframes popIn { 0%{transform:scale(0.7); opacity:0} 100%{transform:scale(1); opacity:1} }

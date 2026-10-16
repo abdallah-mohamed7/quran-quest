@@ -1,4 +1,4 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+﻿import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.amaha.quranquest',
@@ -6,6 +6,10 @@ const config: CapacitorConfig = {
   webDir: 'dist',
   android: {
     allowMixedContent: true,
+    backgroundColor: '#9cd4ff',
+  },
+  server: {
+    androidScheme: 'https',
   },
 };
 

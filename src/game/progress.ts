@@ -1,4 +1,3 @@
-// src/game/progress.ts
 const KEY = 'quran-quest-progress';
 
 export type LevelProgress = {
@@ -7,44 +6,41 @@ export type LevelProgress = {
   coinsCollected: number;
   completed: boolean;
 };
-
 export type ProgressMap = Record<string, LevelProgress>;
 
 function load(): ProgressMap {
   try {
-    const raw = localStorage.getItem(KEY);
-    return raw ? JSON.parse(raw) as ProgressMap : {};
+    const r = localStorage.getItem(KEY);
+    return r ? JSON.parse(r) : {};
   } catch { return {}; }
 }
-
-function save(p: ProgressMap): void {
+function save(p: ProgressMap) {
   try { localStorage.setItem(KEY, JSON.stringify(p)); } catch {}
 }
 
 export const progress = {
-  get(levelId: string): LevelProgress | undefined {
-    return load()[levelId];
-  },
-  record(levelId: string, stars: number, timeMs: number, coinsCollected: number): LevelProgress {
+  getAll(): ProgressMap { return load(); },
+  get(id: string): LevelProgress | undefined { return load()[id]; },
+  record(id: string, stars: number, timeMs: number, coins: number): LevelProgress {
     const all = load();
-    const prev = all[levelId];
-    const cs = Math.max(0, Math.min(3, stars)) as 0 | 1 | 2 | 3;
+    const prev = all[id];
+    const s = Math.max(0, Math.min(3, stars)) as 0 | 1 | 2 | 3;
     const next: LevelProgress = {
-      stars: prev ? (Math.max(prev.stars, cs) as 0 | 1 | 2 | 3) : cs,
+      stars: prev ? (Math.max(prev.stars, s) as 0 | 1 | 2 | 3) : s,
       bestTimeMs: prev ? Math.min(prev.bestTimeMs, timeMs) : timeMs,
-      coinsCollected: prev ? Math.max(prev.coinsCollected, coinsCollected) : coinsCollected,
+      coinsCollected: prev ? Math.max(prev.coinsCollected, coins) : coins,
       completed: true,
     };
-    all[levelId] = next;
+    all[id] = next;
     save(all);
     return next;
   },
   clear(): void { localStorage.removeItem(KEY); },
 };
 
-export function computeStars(coinsGot: number, coinsTotal: number, timeMs: number): number {
+export function computeStars(coins: number, total: number, timeMs: number): number {
   let s = 1;
-  if (coinsTotal > 0 && coinsGot / coinsTotal >= 0.6) s++;
-  if (timeMs < 60000) s++;
+  if (total > 0 && coins / total >= 0.6) s++;
+  if (timeMs < 90000) s++;
   return s;
 }

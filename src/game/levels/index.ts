@@ -1,4 +1,3 @@
-// src/game/levels/index.ts
 import level001 from './level-001.json';
 import level002 from './level-002.json';
 import level003 from './level-003.json';
@@ -11,9 +10,7 @@ import level009 from './level-009.json';
 import level010 from './level-010.json';
 import type { LevelDef } from '../types';
 
-const levels = [
-  level001, level002, level003, level004, level005,
-  level006, level007, level008, level009, level010,
-] as unknown as LevelDef[];
+const levels = [level001, level002, level003, level004, level005,
+                level006, level007, level008, level009, level010] as unknown as LevelDef[];
 
 export default levels;

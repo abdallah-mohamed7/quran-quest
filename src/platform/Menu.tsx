@@ -1,90 +1,70 @@
-// src/platform/Menu.tsx
 import { progress } from '../game/progress';
 
 export default function Menu({ onStart }: { onStart: () => void }) {
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-sky-400 via-sky-200 to-amber-100 flex items-center justify-center">
-
-      {/* Floating clouds */}
-      <div className="pointer-events-none absolute top-[12%] left-[8%]  h-12 w-40 rounded-full bg-white/70 blur-[1px] animate-float" />
-      <div className="pointer-events-none absolute top-[65%] left-[12%] h-10 w-32 rounded-full bg-white/60 blur-[1px] animate-float [animation-delay:1.5s]" />
-      <div className="pointer-events-none absolute top-[22%] right-[10%] h-14 w-48 rounded-full bg-white/70 blur-[1px] animate-float [animation-delay:0.7s]" />
-      <div className="pointer-events-none absolute top-[70%] right-[15%] h-10 w-36 rounded-full bg-white/60 blur-[1px] animate-float [animation-delay:2.1s]" />
-
-      {/* Sparkles */}
-      {[...Array(8)].map((_, i) => (
-        <span
-          key={i}
-          className="pointer-events-none absolute select-none animate-twinkle"
-          style={{
-            top: `${8 + (i * 11) % 82}%`,
-            left: `${(i * 27) % 92}%`,
-            fontSize: 14 + (i % 3) * 8,
-            animationDelay: `${i * 0.28}s`,
-          }}
-        >⭐</span>
-      ))}
+    <div style={{
+      position: 'relative', width: '100%', height: '100vh',
+      background: 'linear-gradient(180deg, #9cd4ff 0%, #c8e8ff 45%, #ffe5a8 100%)',
+      display: 'grid', placeItems: 'center', overflow: 'hidden',
+    }}>
+      {/* Clouds */}
+      <div style={{ position: 'absolute', top: '14%', left: '8%', width: 140, height: 42,
+        background: 'rgba(255,255,255,0.85)', borderRadius: 40, boxShadow: '60px 10px 0 rgba(255,255,255,0.85)',
+        animation: 'floaty 6s ease-in-out infinite' }} />
+      <div style={{ position: 'absolute', top: '68%', left: '14%', width: 110, height: 36,
+        background: 'rgba(255,255,255,0.8)', borderRadius: 40, boxShadow: '50px 8px 0 rgba(255,255,255,0.8)',
+        animation: 'floaty 6s ease-in-out infinite 1.5s' }} />
+      <div style={{ position: 'absolute', top: '24%', right: '10%', width: 150, height: 46,
+        background: 'rgba(255,255,255,0.85)', borderRadius: 40, boxShadow: '70px 10px 0 rgba(255,255,255,0.85)',
+        animation: 'floaty 6s ease-in-out infinite 0.7s' }} />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center px-6 text-center">
+      <div style={{ textAlign: 'center', padding: 24, zIndex: 10 }}>
+        <div style={{ fontSize: 130, lineHeight: 1, animation: 'bob 2.4s ease-in-out infinite',
+          filter: 'drop-shadow(0 12px 24px rgba(255,80,80,0.35))' }}>🎈</div>
 
-        <div className="text-[8rem] leading-none animate-bob drop-shadow-[0_12px_24px_rgba(239,68,68,0.35)]">
-          🎈
-        </div>
-
-        <h1 className="font-display text-[clamp(3rem,10vw,6rem)] font-black leading-none tracking-tight mt-3">
-          <span className="text-orange-500 drop-shadow-[0_4px_0_rgba(255,255,255,0.95)]">
-            Quran
-          </span>{' '}
-          <span className="text-sky-600 drop-shadow-[0_4px_0_rgba(255,255,255,0.95)]">
-            Quest
-          </span>
+        <h1 style={{
+          fontSize: 'clamp(48px, 10vw, 92px)',
+          margin: '12px 0 4px', letterSpacing: -1, fontWeight: 900,
+          textShadow: '0 4px 0 rgba(255,255,255,0.9)',
+        }}>
+          <span style={{ color: '#ff6b35' }}>Quran</span>{' '}
+          <span style={{ color: '#4a90e2' }}>Quest</span>
         </h1>
 
-        <p
-          dir="rtl"
-          className="font-arabic text-2xl md:text-3xl font-bold text-slate-700 mt-3 mb-10"
-        >
-          ارْكض · اقِف · اسْتَمِع
-        </p>
+        <p className="ar" style={{
+          fontSize: 'clamp(20px, 3vw, 30px)',
+          margin: '8px 0 32px', color: '#3a5a8a', fontWeight: 700,
+        }}>ارْكض · اقفِز · اسْتَمِع</p>
 
-        <button
-          onClick={onStart}
-          className="
-            px-12 py-5 rounded-full
-            font-display text-3xl md:text-4xl font-black text-white
-            bg-gradient-to-b from-orange-400 to-orange-500
-            shadow-[0_8px_0_#c2410c,0_14px_32px_rgba(234,88,12,0.45)]
-            active:translate-y-1 active:shadow-[0_3px_0_#c2410c]
-            transition-all duration-100
-            flex items-center gap-3
-          "
-        >
-          <span className="text-2xl">▶</span>
-          <span>Let&apos;s Play!</span>
+        <button onClick={onStart} style={{
+          padding: '20px 52px',
+          fontSize: 28, fontWeight: 800, color: '#fff',
+          background: 'linear-gradient(180deg, #ff9a3c 0%, #ff6b35 100%)',
+          borderRadius: 999,
+          boxShadow: '0 6px 0 #c4451a, 0 12px 28px rgba(255,107,53,0.45)',
+          display: 'inline-flex', alignItems: 'center', gap: 12,
+        }}>
+          <span>▶</span>
+          <span>Let's Play!</span>
         </button>
 
-        <p className="mt-10 text-sm text-slate-600 font-medium opacity-80">
-          ← → move &nbsp;·&nbsp; SPACE jump &nbsp;·&nbsp; R restart
+        <p style={{ marginTop: 40, fontSize: 14, color: '#3a5a8a', opacity: 0.75, fontWeight: 600 }}>
+          ← → move · SPACE jump · R restart
         </p>
 
-        <button
-          onClick={() => {
-            if (window.confirm('Reset all stars and progress?')) {
-              progress.clear();
-              window.location.reload();
-            }
-          }}
-          className="
-            mt-5 px-5 py-2 rounded-full
-            bg-white/70 border-2 border-white
-            text-slate-700 text-sm font-bold
-            shadow-sm hover:bg-white/90
-            transition-colors
-          "
-        >
-          🔄 Reset progress
-        </button>
+        <button onClick={() => {
+          if (window.confirm('Reset all stars and progress?')) {
+            progress.clear();
+            window.location.reload();
+          }
+        }} style={{
+          marginTop: 18, padding: '8px 18px', fontSize: 14, fontWeight: 700,
+          color: '#3a5a8a',
+          background: 'rgba(255,255,255,0.7)',
+          borderRadius: 999,
+          border: '2px solid rgba(255,255,255,0.9)',
+        }}>🔄 Reset progress</button>
       </div>
     </div>
   );

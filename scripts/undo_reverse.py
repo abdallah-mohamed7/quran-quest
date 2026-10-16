@@ -1,35 +1,91 @@
-"""Swap reversed page audio back to normal.
-After running: 001.mp3 = page 1, 604.mp3 = page 604."""
+"""Rounded corners on platforms — softer, modern look."""
 
 import pathlib
+import shutil
+import subprocess
+import sys
 
-# Both places need fixing:
-SRC = pathlib.Path(r"C:\Users\amaha\Desktop\my pc\النجاه\الشيخ الحصري")
-DST = pathlib.Path("public/quran/audio/pages")
+PROJECT = pathlib.Path(r"C:\Users\amaha\quran-quest")
+BS = PROJECT / "src" / "game" / "scenes" / "BootScene.ts"
 
-for base in (SRC, DST):
-    if not base.exists():
-        print(f"⚠  skip (missing): {base}")
-        continue
+if not BS.exists():
+    print("X  BootScene.ts not found")
+    sys.exit(1)
 
-    files = sorted(base.glob("[0-9][0-9][0-9].mp3"))
-    print(f"\n{base}")
-    print(f"  found {len(files)} files")
+shutil.copy2(BS, BS.with_suffix(".ts.bak_round"))
 
-    # Phase 1: rename everything to a temp name
-    for i in range(1, 605):
-        src = base / f"{i:03d}.mp3"
-        tmp = base / f"__swap_{i:03d}.mp3"
-        if src.exists():
-            src.rename(tmp)
+new_makePlatform = '''  // Platform — rounded top corners, soft edges, no outline
+  private makePlatform() {
+    const W = 96, H = 44;
+    const r = 10;   // corner radius
 
-    # Phase 2: temp -> final swapped name
-    for i in range(1, 605):
-        tmp = base / f"__swap_{i:03d}.mp3"
-        dst = base / f"{605 - i:03d}.mp3"
-        if tmp.exists():
-            tmp.rename(dst)
+    const g = this.add.graphics();
 
-print("\n✅ Done.")
-print("  001.mp3 is now page 1 (Al-Fatiha)")
-print("  604.mp3 is now page 604 (An-Nas)")
+    // ── Dirt body with rounded top ────────────────────
+    g.fillStyle(0x9b6a3b, 1);
+    g.fillRoundedRect(0, 12, W, H - 12, {
+      tl: r, tr: r, bl: 0, br: 0,
+    });
+
+    // ── Bottom shade ──────────────────────────────────
+    g.fillStyle(0x7a5228, 1);
+    g.fillRoundedRect(0, H - 10, W, 10, {
+      tl: 0, tr: 0, bl: r, br: r,
+    });
+
+    // ── Grass cap (rounded top) ───────────────────────
+    g.fillStyle(0x6cc24a, 1);
+    g.fillRoundedRect(0, 0, W, 18, {
+      tl: r, tr: r, bl: 0, br: 0,
+    });
+
+    // ── Grass highlight strip ─────────────────────────
+    g.fillStyle(0x8ee06b, 1);
+    g.fillRoundedRect(0, 0, W, 6, {
+      tl: r, tr: r, bl: 0, br: 0,
+    });
+
+    // ── Grass tufts ───────────────────────────────────
+    g.fillStyle(0x5cb03c, 1);
+    for (let x = 6; x < W - 6; x += 14) {
+      g.fillTriangle(x, 2, x + 4, -3, x + 8, 2);
+    }
+
+    g.generateTexture('platform', W, H);
+    g.destroy();
+  }'''
+
+c = BS.read_text(encoding="utf-8")
+
+# Find and replace makePlatform (handles multiple variants)
+import re
+pattern = re.compile(
+    r"  // Platform[^\n]*\n  private makePlatform\(\) \{[\s\S]*?\n  \}",
+    re.MULTILINE,
+)
+before = c
+c = pattern.sub(new_makePlatform, c, count=1)
+
+if c == before:
+    print("X  makePlatform not found — paste current version")
+    sys.exit(1)
+
+BS.write_text(c, encoding="utf-8")
+print("OK  makePlatform rewritten with rounded corners")
+
+print("\nBuilding...")
+r = subprocess.run("npm run build", shell=True, cwd=str(PROJECT))
+if r.returncode != 0:
+    print("X  build failed")
+    sys.exit(1)
+
+print("\n" + "=" * 55)
+print("Done.  Next:  npm run dev")
+print("=" * 55)
+print("""
+Platform is now 96x44 with:
+  - Rounded top-left and top-right corners (10px radius)
+  - Rounded bottom-left and bottom-right corners
+  - No outline
+  - 3-layer shading (grass / grass highlight / dirt + bottom shade)
+""")

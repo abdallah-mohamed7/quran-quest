@@ -1,0 +1,184 @@
+Total real PNGs: 151
+
+==============================================================================
+PACK: craftpix-net-499014-free-sky-ruins-2d-platformer-tileset
+==============================================================================
+
+  [PNG\Background]   (2 files)
+  --------------------------------------------------------------------------
+       34 KB   Sky_Ruins_2D_Platformer_Tileset_Background - Layer 00.png
+       30 KB   Sky_Ruins_2D_Platformer_Tileset_Background - Layer 01.png
+
+  [PNG\Collectable Object]   (16 files)
+  --------------------------------------------------------------------------
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Coin 01.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Coin 02.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Coin 03.png
+        0 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Coin 04.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Coin 05.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Coin 06.png
+        6 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Elixir.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Golden Key.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Life.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Locked Golden Treasure Box.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Locked Silver Treasure Box.png
+        7 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Mana.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Silver Key.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Star.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Unlocked Golden Treasure Box.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Collectable Object - Unlocked Silver Treasure Box.png
+
+  [PNG\Environment]   (28 files)
+  --------------------------------------------------------------------------
+       11 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Abandoned columns.png
+        9 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Big stone.png
+        2 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Column.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Fence 01.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Fence 02.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Grass.png
+        7 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Magic stone 01.png
+        8 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Magic stone 02.png
+        8 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Old brick wall.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Old stone.png
+        2 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Pad.png
+       10 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Part wall.png
+       54 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Portal.png
+        2 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Rock 01.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Rock 02.png
+        1 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Rock 03.png
+        2 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Rock 04.png
+        2 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Rock 05.png
+        2 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Rock 06.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Signpost 01.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Signpost 02.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Signpost 03.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Signpost 04.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Signpost 05.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Signpost 06.png
+        2 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Stone 01.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Stone 02.png
+       30 KB   Sky_Ruins_2D_Platformer_Tileset_Environment - Tree.png
+
+  [PNG\Platfromer]   (30 files)
+  --------------------------------------------------------------------------
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Bonus.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Brick 01.png
+        4 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Brick 02.png
+        1 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Bridge Part 01.png
+        1 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Bridge Part 02.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 01.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 02.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 03.png
+        6 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 04.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 05.png
+        0 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 06.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 07.png
+        6 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 08.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 09.png
+        6 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 10.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 11.png
+        6 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 12.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground 13.png
+       15 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground Additional 01.png
+       17 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground Additional 02.png
+       17 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground Additional 03.png
+       18 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground Additional 04.png
+        6 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground Additional 05.png
+        8 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground Additional 06.png
+       14 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ground Additional 07.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Ladder.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Spike.png
+        5 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Stone.png
+        6 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Wooden Barrel.png
+        3 KB   Sky_Ruins_2D_Platformer_Tileset_Platformer - Wooden Box.png
+
+==============================================================================
+PACK: craftpix-net-712113-free-world-tree-roots-2d-platformer-tileset
+==============================================================================
+
+  [PNG\Background]   (2 files)
+  --------------------------------------------------------------------------
+       67 KB   World_Tree_Roots_2D_Platformer_Tileset_Background - Layer 00.png
+       92 KB   World_Tree_Roots_2D_Platformer_Tileset_Background - Layer 01.png
+
+  [PNG\Collectable Object]   (16 files)
+  --------------------------------------------------------------------------
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Coin 01.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Coin 02.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Coin 03.png
+        0 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Coin 04.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Coin 05.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Coin 06.png
+        8 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Crystal.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Golden Key.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Life.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Locked Golden Treasure Box.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Locked Silver Treasure Box.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Mushroom.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Silver Key.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Star.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Unlocked Golden Treasure Box.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Collectable Object - Unlocked Silver Treasure Box.png
+
+  [PNG\Environment]   (27 files)
+  --------------------------------------------------------------------------
+        6 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Bush 01.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Bush 02.png
+        3 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Fence 01.png
+        3 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Fence 02.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Fireplace.png
+        6 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Ivy 01.png
+        3 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Ivy 02.png
+       10 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Leaves.png
+        6 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Plant 01.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Plant 02.png
+       31 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Portal.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Rock 01.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Rock 02.png
+        1 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Rock 03.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Rock 04.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Rock 05.png
+        1 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Rock 06.png
+       37 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Root.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Signpost 01.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Signpost 02.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Signpost 03.png
+        3 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Signpost 04.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Signpost 05.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Signpost 06.png
+       29 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Statue.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Stone 01.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Environment - Stone 02.png
+
+  [PNG\Platfromer]   (30 files)
+  --------------------------------------------------------------------------
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Bonus.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Brick 01.png
+        3 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Brick 02.png
+        1 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Bridge Part 01.png
+        0 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Bridge Part 02.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 01.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 02.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 03.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 04.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 05.png
+        0 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 06.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 07.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 08.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 09.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 10.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 11.png
+        5 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 12.png
+        2 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground 13.png
+       13 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground Additional 01.png
+       16 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground Additional 02.png
+       16 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground Additional 03.png
+       16 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground Additional 04.png
+        6 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground Additional 05.png
+        8 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground Additional 06.png
+       12 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ground Additional 07.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Ladder.png
+        3 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Spike.png
+        4 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Stone.png
+        6 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Wooden Barrel.png
+        3 KB   World_Tree_Roots_2D_Platformer_Tileset_Platformer - Wooden Box.png

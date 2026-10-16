@@ -4,14 +4,12 @@ import type { LevelDef, Theme } from '../types';
 
 const WORLD_H = 540;
 
-const THEMES: Record<Theme, {
-  skyTop: number; skyBottom: number; hill1: number; hill2: number; platform: number;
-}> = {
-  day:    { skyTop: 0x9cd4ff, skyBottom: 0xdff0ff, hill1: 0xc8e8d8, hill2: 0xa8d8c0, platform: 0x54cc4a },
-  sunset: { skyTop: 0xffc6a8, skyBottom: 0xffe8d0, hill1: 0xffd8b8, hill2: 0xffc0a0, platform: 0xff9855 },
-  forest: { skyTop: 0xb8e8d8, skyBottom: 0xe8f8f0, hill1: 0xa8dcc8, hill2: 0x88c8b0, platform: 0x4eb85a },
-  candy:  { skyTop: 0xffd0e8, skyBottom: 0xfff4fa, hill1: 0xffd8ec, hill2: 0xffb8dc, platform: 0xd060d0 },
-  ocean:  { skyTop: 0x9cd4ff, skyBottom: 0xe8f6ff, hill1: 0xbcdfee, hill2: 0x9cc8e0, platform: 0x4a90e0 },
+const THEMES: Record<Theme, { skyTop: number; skyBottom: number; hill1: number; hill2: number }> = {
+  day:    { skyTop: 0x9cd4ff, skyBottom: 0xdff0ff, hill1: 0xc8e8d8, hill2: 0xa8d8c0 },
+  sunset: { skyTop: 0xffc6a8, skyBottom: 0xffe8d0, hill1: 0xffd8b8, hill2: 0xffc0a0 },
+  forest: { skyTop: 0xb8e8d8, skyBottom: 0xe8f8f0, hill1: 0xa8dcc8, hill2: 0x88c8b0 },
+  candy:  { skyTop: 0xffd0e8, skyBottom: 0xfff4fa, hill1: 0xffd8ec, hill2: 0xffb8dc },
+  ocean:  { skyTop: 0x9cd4ff, skyBottom: 0xe8f6ff, hill1: 0xbcdfee, hill2: 0x9cc8e0 },
 };
 
 export class LevelScene extends Phaser.Scene {
@@ -33,6 +31,8 @@ export class LevelScene extends Phaser.Scene {
   private coinsCollected = 0;
   private coinsTotal = 0;
 
+  private parallaxImages: { img: Phaser.GameObjects.Image; factor: number }[] = [];
+
   constructor() { super('Level'); }
 
   create() {
@@ -53,6 +53,14 @@ export class LevelScene extends Phaser.Scene {
     bus.on('input:right:down', () => { this.virtualRight = true;  });
     bus.on('input:right:up',   () => { this.virtualRight = false; });
     bus.on('input:jump:down',  () => { this.jumpQueuedAt = this.time.now; });
+
+    // Position-based parallax each frame
+    this.events.on(Phaser.Scenes.Events.UPDATE, () => {
+      const camX = this.cameras.main.scrollX;
+      for (const p of this.parallaxImages) {
+        p.img.x = -camX * p.factor;
+      }
+    });
   }
 
   private loadLevel(level: LevelDef): void {
@@ -64,6 +72,7 @@ export class LevelScene extends Phaser.Scene {
     this.startTime = this.time.now;
     this.coinsCollected = 0;
     this.coinsTotal = level.coins.length;
+    this.parallaxImages = [];
 
     this.children.removeAll();
     this.physics.world.colliders.destroy();
@@ -74,86 +83,80 @@ export class LevelScene extends Phaser.Scene {
     for (const p of level.platforms) maxX = Math.max(maxX, p.x + p.w / 2);
     maxX = Math.max(maxX, level.goal.x + 400);
     const worldW = maxX + 200;
-    this.physics.world.setBounds(0, 0, worldW, WORLD_H);
+    this.physics.world.setBounds(0, 0, worldW, WORLD_H + 600);
 
     const theme = THEMES[level.theme];
-
     const cam = this.cameras.main;
     cam.setBackgroundColor(theme.skyBottom);
-    const bg = this.add.graphics().setScrollFactor(0).setDepth(-100);
-    bg.fillGradientStyle(theme.skyTop, theme.skyTop, theme.skyBottom, theme.skyBottom, 1);
-    bg.fillRect(0, 0, 1280, WORLD_H);
 
-    // Parallax hills
-    const hillLayer = (count: number, yOff: number, w: number, h: number, color: number, alpha: number, px: number) => {
-      for (let i = 0; i < count; i++) {
-        const hx = i * (worldW / count) + Phaser.Math.Between(-150, 150);
-        const hy = WORLD_H + yOff + Phaser.Math.Between(-30, 30);
-        const g = this.add.graphics().setScrollFactor(px).setDepth(-85);
-        g.fillStyle(color, alpha);
-        g.fillEllipse(hx, hy, w, h * 2);
-      }
-    };
-    hillLayer(7, 60, 420, 160, theme.hill1, 0.55, 0.12);
-    hillLayer(5, 110, 560, 200, theme.hill2, 0.75, 0.28);
+    // ── Sky gradient (static, full viewport) ─────────────
+    const viewW = this.scale.width || 1280;
+    const viewH = this.scale.height || WORLD_H;
 
-    // Clouds
-    for (let i = 0; i < 26; i++) {
-      const x = Phaser.Math.Between(0, worldW);
-      const y = Phaser.Math.Between(40, 200);
-      const w = Phaser.Math.Between(70, 150);
-      const h = Phaser.Math.Between(24, 44);
-      this.add.ellipse(x, y, w, h, 0xffffff, 0.62)
-        .setScrollFactor(0.35).setDepth(-88);
-      this.add.ellipse(x + w * 0.3, y - h * 0.35, w * 0.6, h * 0.85, 0xffffff, 0.68)
-        .setScrollFactor(0.35).setDepth(-88);
+    const sky = this.add.graphics().setScrollFactor(0).setDepth(-300);
+    sky.fillGradientStyle(theme.skyTop, theme.skyTop, theme.skyBottom, theme.skyBottom, 1);
+    sky.fillRect(0, 0, viewW, viewH);
+
+    // ── Background — one image, locked to camera, crisp ───
+    // Scale to cover the viewport. No parallax, no seams, no blur.
+    // The image itself has distant + near clouds painted in.
+    if (this.textures.exists('bg_1')) {
+      const src = this.textures.get('bg_1').getSourceImage();
+      const scale = Math.max(viewW / src.width, viewH / src.height);
+      this.add.image(viewW / 2, viewH / 2, 'bg_1')
+        .setScrollFactor(0)
+        .setDepth(-250)
+        .setScale(scale);
     }
-
-    // Decorations
+// ── Decorations (small trees & bushes) ──────────────
     for (const d of level.decorations) {
       const key = d.kind === 'tree' ? 'tree' : 'bush';
-      this.add.image(d.x, d.y + 30, key)
+      if (!this.textures.exists(key)) continue;
+      const img = this.add.image(d.x, d.y + 25, key)
         .setOrigin(0.5, 1)
         .setDepth(-10);
+      if (d.kind === 'tree') img.setScale(0.45);
+      else img.setScale(0.55);
     }
 
-    // Platforms
     this.solids = this.physics.add.staticGroup();
     for (const p of level.platforms) {
       const s = this.solids.create(p.x, p.y, 'platform') as Phaser.Physics.Arcade.Sprite;
-      s.setDisplaySize(p.w, p.h).refreshBody();
-      s.setTint(theme.platform);
+      s.setDisplaySize(p.w, Math.max(p.h, 26)).refreshBody();
     }
 
-    // Hazards
+    // ── Hazards ──────────────────────────────────────
     for (const h of level.hazards) {
       const s = this.solids.create(h.x, h.y, 'hazard') as Phaser.Physics.Arcade.Sprite;
-      s.setDisplaySize(h.w, h.h).refreshBody();
+      s.setDisplaySize(h.w, Math.max(h.h, 26)).refreshBody();
       s.setData('hazard', true);
     }
 
-    // Coins
+    // ── Coins (34×34) ────────────────────────────────
     this.coins = this.physics.add.staticGroup();
     for (const c of level.coins) {
       const coin = this.coins.create(c.x, c.y, 'coin') as Phaser.Physics.Arcade.Sprite;
+      coin.setDisplaySize(30, 30);
+      coin.refreshBody();
       coin.setData('collected', false);
       this.tweens.add({
-        targets: coin, y: c.y - 6,
+        targets: coin, y: c.y - 5,
         duration: 1000, yoyo: true, repeat: -1, ease: 'Sine.inOut',
       });
     }
     bus.emit('coins:update', { got: 0, total: this.coinsTotal });
 
-    // Goal
+    // ── Goal portal ──────────────────────────────────
     const goal = this.physics.add.staticSprite(level.goal.x, level.goal.y, 'goal');
-    goal.setDisplaySize(level.goal.w, level.goal.h).refreshBody();
+    goal.setDisplaySize(80, 110).refreshBody();
+    goal.setDepth(2);
     this.tweens.add({
       targets: goal,
       scaleX: goal.scaleX * 1.06, scaleY: goal.scaleY * 1.06,
       duration: 900, yoyo: true, repeat: -1, ease: 'Sine.inOut',
     });
 
-    // Player
+    // ── Player ───────────────────────────────────────
     this.player = this.physics.add.sprite(level.spawn.x, level.spawn.y, 'ball');
     this.player.setCircle(40, 8, 8);
     this.player.setBounce(0);
@@ -163,7 +166,7 @@ export class LevelScene extends Phaser.Scene {
     this.player.setDepth(10);
     this.player.setScale(0.62);
 
-    // Collisions
+    // ── Collisions ───────────────────────────────────
     this.physics.add.collider(this.player, this.solids, (_p, obj) => {
       const o = obj as Phaser.GameObjects.GameObject;
       if (o.getData?.('hazard')) this.die();
@@ -173,11 +176,10 @@ export class LevelScene extends Phaser.Scene {
     });
     this.physics.add.overlap(this.player, goal, () => this.win());
 
-    // Camera
+    // ── Camera ───────────────────────────────────────
     cam.setBounds(0, 0, worldW, WORLD_H);
     cam.startFollow(this.player, true, 0.14, 0.14, -200, 40);
 
-    // Intro text
     this.showIntro(level.name);
   }
 
@@ -191,13 +193,9 @@ export class LevelScene extends Phaser.Scene {
       strokeThickness: 10,
       align: 'center',
     })
-      .setOrigin(0.5)
-      .setScrollFactor(0)
-      .setDepth(2000);
+      .setOrigin(0.5).setScrollFactor(0).setDepth(2000);
     t.setPosition(cam.midPoint.x, cam.midPoint.y - 40);
-    t.setAlpha(0);
-    t.setScale(0.7);
-
+    t.setAlpha(0).setScale(0.7);
     this.tweens.add({ targets: t, alpha: 1, scale: 1, duration: 400, ease: 'Back.out' });
     this.tweens.add({
       targets: t, alpha: 0, y: t.y - 60,
@@ -212,7 +210,6 @@ export class LevelScene extends Phaser.Scene {
     const body = this.player.body as Phaser.Physics.Arcade.Body;
     const onGround = body.blocked.down;
     const now = this.time.now;
-
     if (onGround) this.lastGroundedAt = now;
 
     const SPEED = 320;
@@ -249,7 +246,7 @@ export class LevelScene extends Phaser.Scene {
     if (!onGround) this.landedThisFrame = false;
 
     if (Phaser.Input.Keyboard.JustDown(this.keys.restart)) this.die();
-    if (this.player.y > WORLD_H + 200) this.die();
+    if (this.player.y > WORLD_H + 80) this.die();
   }
 
   private collectCoin(coin: Phaser.Physics.Arcade.Sprite): void {
@@ -287,6 +284,8 @@ export class LevelScene extends Phaser.Scene {
     bus.emit('level:death', { levelId: this.level.id });
     this.player.setPosition(this.level.spawn.x, this.level.spawn.y);
     this.player.setVelocity(0, 0);
+    this.player.setScale(0.62, 0.62);
+    (this.player.body as Phaser.Physics.Arcade.Body).reset(this.level.spawn.x, this.level.spawn.y);
     this.startTime = this.time.now;
   }
 
